@@ -4,6 +4,10 @@ on:
     branches:
       - branch_test2
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
