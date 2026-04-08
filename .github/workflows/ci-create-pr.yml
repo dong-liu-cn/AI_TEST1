@@ -1,4 +1,4 @@
-name: CI and create PR
+name: CI
 on:
   push:
     branches:
@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   build:
@@ -19,36 +18,3 @@ jobs:
         run: |
           echo "No project-specific tests configured. Placeholder build step."
           echo "Build succeeded"
-
-  create_pr:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create PR if not exists
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            const head = 'branch_test2';
-            const base = 'main';
-            const { data: pulls } = await github.rest.pulls.list({
-              owner,
-              repo,
-              state: 'open',
-              head: `${owner}:${head}`,
-              base
-            });
-            if (pulls.length > 0) {
-              console.log(`Existing PR found: #${pulls[0].number}`);
-            } else {
-              const { data: pr } = await github.rest.pulls.create({
-                owner,
-                repo,
-                title: `Auto: Merge ${head} into ${base}`,
-                head,
-                base,
-                body: 'Automated PR created after successful CI on branch_test2.'
-              });
-              console.log(`Created PR #${pr.number}`);
-            }
