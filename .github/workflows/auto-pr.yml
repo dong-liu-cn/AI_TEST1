@@ -18,6 +18,8 @@ jobs:
       - name: Create Pull Request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_ACTOR: ${{ github.actor }}
+          PR_SHA: ${{ github.sha }}
         run: |
           # 既存のオープンPRを確認
           PR_COUNT=$(gh pr list \
@@ -29,17 +31,21 @@ jobs:
 
           if [ "$PR_COUNT" -eq 0 ]; then
             TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+
+            printf '%s\n' \
+              '## 自動作成されたプルリクエスト' \
+              '' \
+              'このPRは `branch_test2` ブランチへのプッシュにより自動作成されました。' \
+              '' \
+              '- **ソースブランチ:** `branch_test2`' \
+              '- **マージ先:** `main`' \
+              "- **トリガー:** ${PR_ACTOR} によるプッシュ" \
+              "- **コミット:** ${PR_SHA}" \
+              > /tmp/pr_body.md
+
             gh pr create \
               --title "[Auto PR] branch_test2 への変更: ${TIMESTAMP}" \
-              --body "## 自動作成されたプルリクエスト
-
-このPRは \`branch_test2\` ブランチへのプッシュにより自動作成されました。
-
-- **ソースブランチ:** \`branch_test2\`
-- **マージ先:** \`main\`
-- **トリガー:** ${{ github.actor }} によるプッシュ
-- **コミット:** ${{ github.sha }}
-" \
+              --body-file /tmp/pr_body.md \
               --base main \
               --head branch_test2
             echo "PR created successfully."
