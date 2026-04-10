@@ -1,0 +1,404 @@
+{
+  "basicInfo": {
+    "businessId": "U-IM-020-P",
+    "businessName": "在庫管理",
+    "functionId": "U-IM-020-P",
+    "functionName": "在庫一覧",
+    "systemName": "ONEsLOGI Cloud / WMS",
+    "authors": {
+      "creator": "季",
+      "reviewer": "中川",
+      "approver": "松本"
+    },
+    "version": "Ver0.1"
+  },
+  "changeHistory": [
+    {
+      "no": 1,
+      "date": "2025-10-06",
+      "sheet": "－",
+      "content": "新規作成",
+      "type": "新規",
+      "author": "季"
+    }
+  ],
+  "processes": [
+    {
+      "processNo": 1,
+      "processName": "検索処理",
+      "trigger": "「検索」ボタン押下",
+      "actionId": "①",
+      "layer": "frontend/backend",
+      "description": "検索条件に従い、在庫情報を取得する",
+      "precondition": "無し",
+      "supplement": [
+        "検索処理の詳細について、「設計概要①_概要補足」シートの＜１．検索結果について＞を参照する",
+        "実績済在庫基準日と予定在庫基準日に従う在庫数の表示について、「設計概要②_在庫の見え方」を参照する"
+      ],
+      "sortOrder": [
+        { "no": 1, "field": "組織コード", "remarks": "コードマスタに設定している優先表示組織（1300、1303）の情報を一覧の先頭に表示する" },
+        { "no": 2, "field": "取引先コード", "remarks": "" },
+        { "no": 3, "field": "品目コード", "remarks": "" }
+      ],
+      "postAction": "在庫情報のデータを取得し、明細画面を表示する",
+      "completionAction": "無し"
+    },
+    {
+      "processNo": 2,
+      "processName": "Excel出力処理",
+      "trigger": "「Excel」ボタン押下",
+      "actionId": "②",
+      "layer": "frontend/backend",
+      "description": "検索結果一覧をExcelで出力する",
+      "precondition": "検索結果が一覧表示されていること",
+      "supplement": ["詳細は別紙の共通設計書を参照"],
+      "sortOrder": [{ "no": 1, "field": "「検索」ボタン押下時と同じ", "remarks": "" }],
+      "postAction": "検索結果の一覧をExcel出力する",
+      "completionAction": "出力処理完了の確認メッセージを表示する"
+    },
+    {
+      "processNo": 3,
+      "processName": "ページング制御処理",
+      "trigger": "「先頭頁」「前頁」「後頁」「最終頁」ボタン押下",
+      "actionId": "③",
+      "layer": "frontend",
+      "description": "検索結果一覧のページング制御を行う",
+      "precondition": "検索結果が一覧表示されていること",
+      "supplement": ["詳細は別紙の共通設計書を参照"],
+      "sortOrder": [],
+      "postAction": "検索結果一覧のページ切替",
+      "completionAction": "無し"
+    },
+    {
+      "processNo": 4,
+      "processName": "在庫詳細確認処理",
+      "trigger": "「選択」ボタン押下",
+      "actionId": "④",
+      "layer": "frontend",
+      "description": "該当レコードの在庫詳細画面へ参照画面として遷移する",
+      "precondition": "無し",
+      "supplement": [],
+      "sortOrder": [],
+      "postAction": "在庫詳細画面に遷移する",
+      "completionAction": "無し"
+    },
+    {
+      "processNo": 5,
+      "processName": "在庫振替入力処理",
+      "trigger": "「振替」ボタン押下",
+      "actionId": "⑤",
+      "layer": "frontend",
+      "description": "該当レコードの在庫振替入力画面へ新規登録画面として遷移する",
+      "precondition": "無し",
+      "supplement": [],
+      "sortOrder": [],
+      "postAction": "在庫振替入力画面に遷移する",
+      "completionAction": "無し"
+    },
+    {
+      "processNo": 6,
+      "processName": "取引先コードリンク処理",
+      "trigger": "「取引先コード」リンク押下",
+      "actionId": "⑥",
+      "layer": "frontend",
+      "description": "本画面の検索モードが「内訳」として、新規Windowで表示する",
+      "precondition": "無し",
+      "supplement": [],
+      "sortOrder": [],
+      "postAction": "在庫一覧画面に遷移する",
+      "completionAction": "無し"
+    },
+    {
+      "processNo": 7,
+      "processName": "品目コードリンク処理",
+      "trigger": "「品目コード」リンク押下",
+      "actionId": "⑦",
+      "layer": "frontend",
+      "description": "本画面の検索モードが「内訳」として、新規Windowで表示する",
+      "precondition": "無し",
+      "supplement": [],
+      "sortOrder": [],
+      "postAction": "在庫一覧画面に遷移する",
+      "completionAction": "無し"
+    },
+    {
+      "processNo": 8,
+      "processName": "在庫日報Excel出力処理",
+      "trigger": "「在庫日報Excel出力」ボタン押下",
+      "actionId": "⑧",
+      "layer": "frontend/backend",
+      "description": "Webデポで出力する在庫日報Excelの検索・出力を行い、結果をダウンロードする",
+      "precondition": [
+        "出力ボタン押下時、取引先コード・選別数集計基準日の必須チェックを行う",
+        "出力ボタン押下時、選別数集計基準日の未来日チェック（営業日と比較）を行う"
+      ],
+      "supplement": [
+        "ログインユーザの所属会社・ロケールにかかわらず、Webデポ同様の設定（会社コード＝\"100\"、ロケール＝\"ja\"）で各種名称を取得する",
+        "Excelテンプレートも同様に日本語版のみとする",
+        "検索基準日（実績済在庫基準日）以前で最も近い在庫日報を出力する"
+      ],
+      "sortOrder": [],
+      "postAction": "「在庫日報」のExcelファイルが作成される",
+      "completionAction": "発行処理完了の確認メッセージを表示する"
+    }
+  ],
+  "screenItems": {
+    "header": [
+      { "no": 1, "itemName": "検索モード", "inputType": "ラジオボタン", "domain": "-", "required": "○", "initialValue": "通常", "remarks": "通常／内訳" },
+      { "no": 2, "itemName": "組織コード", "inputType": "テキストボックス", "domain": "組織コード", "required": "-", "initialValue": "自組織コード", "remarks": "注2" },
+      { "no": 3, "itemName": "検索ボタン（組織）", "inputType": "リンクボタン", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 4, "itemName": "組織名", "inputType": "テキスト出力", "domain": "組織名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 5, "itemName": "在庫グループコード", "inputType": "テキストボックス", "domain": "グループコード", "required": "-", "initialValue": "", "remarks": "注2" },
+      { "no": 6, "itemName": "検索ボタン（在庫グループ）", "inputType": "リンクボタン", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 7, "itemName": "在庫グループ名", "inputType": "テキスト出力", "domain": "グループ名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 8, "itemName": "取引先種別", "inputType": "ラジオボタン", "domain": "-", "required": "○", "initialValue": "デポ", "remarks": "デポ／仕入先" },
+      { "no": 9, "itemName": "検索範囲", "inputType": "コンボボックス", "domain": "区分", "required": "-", "initialValue": "国内ユーザの場合:国内、海外ユーザの場合:海外", "remarks": "全社／国内／海外" },
+      { "no": 10, "itemName": "取引先コード", "inputType": "テキストボックス", "domain": "取引先コード", "required": "-", "initialValue": "", "remarks": "注2" },
+      { "no": 11, "itemName": "検索ボタン（デポ／仕入先）", "inputType": "リンクボタン", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 12, "itemName": "取引先名", "inputType": "テキスト出力", "domain": "取引先名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 13, "itemName": "取引先名（検索条件）", "inputType": "テキストボックス", "domain": "取引先名", "required": "-", "initialValue": "", "remarks": "部分一致で検索" },
+      { "no": 14, "itemName": "を含む", "inputType": "テキスト出力", "domain": "-", "required": "-", "initialValue": "", "remarks": "固定文言" },
+      { "no": 15, "itemName": "品目コード", "inputType": "テキストボックス", "domain": "品目コード", "required": "-", "initialValue": "", "remarks": "注2" },
+      { "no": 16, "itemName": "検索ボタン（品目）", "inputType": "リンクボタン", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 17, "itemName": "品目名", "inputType": "テキスト出力", "domain": "品目名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 18, "itemName": "在庫状況", "inputType": "コンボボックス", "domain": "区分", "required": "-", "initialValue": "在庫あり", "remarks": "在庫あり／在庫なし／全て" },
+      { "no": 19, "itemName": "未承認の実績を含む", "inputType": "チェックボックス", "domain": "-", "required": "-", "initialValue": "チェックあり", "remarks": "" },
+      { "no": 20, "itemName": "品目コード（複数）1", "inputType": "テキストボックス", "domain": "品目コード", "required": "-", "initialValue": "", "remarks": "注2" },
+      { "no": 21, "itemName": "検索ボタン（品目）", "inputType": "リンクボタン", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 22, "itemName": "品目名（複数）1", "inputType": "テキスト出力", "domain": "品目名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 23, "itemName": "品目コード（複数）2", "inputType": "テキストボックス", "domain": "品目コード", "required": "-", "initialValue": "", "remarks": "注2" },
+      { "no": 24, "itemName": "検索ボタン（品目）", "inputType": "リンクボタン", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 25, "itemName": "品目名（複数）2", "inputType": "テキスト出力", "domain": "品目名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 26, "itemName": "品目コード（複数）3", "inputType": "テキストボックス", "domain": "品目コード", "required": "-", "initialValue": "", "remarks": "注2" },
+      { "no": 27, "itemName": "検索ボタン（品目）", "inputType": "リンクボタン", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 28, "itemName": "品目名（複数）3", "inputType": "テキスト出力", "domain": "品目名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 29, "itemName": "品目コード（複数）4", "inputType": "テキストボックス", "domain": "品目コード", "required": "-", "initialValue": "", "remarks": "注2" },
+      { "no": 30, "itemName": "検索ボタン（品目）", "inputType": "リンクボタン", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 31, "itemName": "品目名（複数）4", "inputType": "テキスト出力", "domain": "品目名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 32, "itemName": "実績済在庫基準日", "inputType": "テキストボックス", "domain": "年月日", "required": "○", "initialValue": "営業日付", "remarks": "未入力の場合、営業日付で検索（注1、注2）" },
+      { "no": 33, "itemName": "予定在庫基準日", "inputType": "テキストボックス", "domain": "年月日", "required": "○", "initialValue": "2999-12-31", "remarks": "注1、注2" },
+      { "no": 34, "itemName": "選別数集計基準日", "inputType": "ラジオボタン", "domain": "-", "required": "-", "initialValue": "月初～指定年月日集計", "remarks": "年集計／月集計／月初～指定年月日集計" },
+      { "no": 35, "itemName": "指定年月日", "inputType": "テキストボックス", "domain": "年月日", "required": "△", "initialValue": "営業日付", "remarks": "月初～指定年月日集計が選択された場合、必須（注1、注2）" },
+      { "no": 36, "itemName": "区分（木・プラ・鉄）品目種別", "inputType": "リストボックス", "domain": "区分", "required": "-", "initialValue": "（ブランク）", "remarks": "未選択（ブランク）の場合、全種別で検索。木／ブラ／鉄／その他" },
+      { "no": 37, "itemName": "検索", "inputType": "ボタン", "domain": "-", "required": "-", "initialValue": "", "remarks": "必須チェック、入力タイプチェック実施" },
+      { "no": 38, "itemName": "Excel出力", "inputType": "ボタン", "domain": "-", "required": "-", "initialValue": "", "remarks": "必須チェック、入力タイプチェック実施" }
+    ],
+    "summary": [
+      { "no": 39, "itemName": "総数", "inputType": "テキスト出力", "domain": "-", "required": "-", "initialValue": "", "remarks": "固定文言" },
+      { "no": 40, "itemName": "実績済在庫数", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 41, "itemName": "出庫可能数", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 42, "itemName": "予定在庫数", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" }
+    ],
+    "detailNormal": [
+      { "no": 43, "itemName": "選択", "inputType": "画像リンク", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 44, "itemName": "振替", "inputType": "画像リンク", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 45, "itemName": "組織コード", "inputType": "テキスト出力", "domain": "組織コード", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 46, "itemName": "組織名", "inputType": "テキスト出力", "domain": "組織名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 47, "itemName": "取引先コード", "inputType": "リンクボタン", "domain": "取引先コード", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 48, "itemName": "取引先名", "inputType": "テキスト出力", "domain": "取引先名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 49, "itemName": "品目コード", "inputType": "リンクボタン", "domain": "品目コード", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 50, "itemName": "品目名", "inputType": "テキスト出力", "domain": "品目名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 51, "itemName": "区分（木・プラ・鉄）品目種別", "inputType": "リストボックス", "domain": "区分", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 52, "itemName": "実績済在庫数", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 53, "itemName": "出庫可能数", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 54, "itemName": "予定在庫数", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 55, "itemName": "在庫優先表示", "inputType": "テキスト出力", "domain": "-", "required": "-", "initialValue": "", "remarks": "組織コードが優先対象の場合：○、上記以外：空白" }
+    ],
+    "detailBreakdown": [
+      { "no": 56, "itemName": "選択", "inputType": "画像リンク", "domain": "-", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 57, "itemName": "組織コード", "inputType": "テキスト出力", "domain": "組織コード", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 58, "itemName": "組織名", "inputType": "テキスト出力", "domain": "組織名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 59, "itemName": "取引先コード", "inputType": "テキスト出力", "domain": "取引先コード", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 60, "itemName": "取引先名", "inputType": "テキスト出力", "domain": "取引先名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 61, "itemName": "品目コード", "inputType": "テキスト出力", "domain": "品目コード", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 62, "itemName": "品目名", "inputType": "テキスト出力", "domain": "品目名", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 63, "itemName": "区分（木・プラ・鉄）品目種別", "inputType": "テキスト出力", "domain": "区分", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 64, "itemName": "実績済在庫数", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 65, "itemName": "出庫可能数", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 66, "itemName": "予定在庫数", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 67, "itemName": "未選別", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 68, "itemName": "一般品", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 69, "itemName": "限定品", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 70, "itemName": "メンテ待ち", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 71, "itemName": "乾燥待ち", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 72, "itemName": "その他", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 73, "itemName": "保留", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 74, "itemName": "基準外", "inputType": "テキスト出力", "domain": "数量", "required": "-", "initialValue": "", "remarks": "" },
+      { "no": 75, "itemName": "在庫優先表示", "inputType": "テキスト出力", "domain": "-", "required": "-", "initialValue": "", "remarks": "組織コードが優先対象の場合：○、上記以外：空白" }
+    ],
+    "footer": [
+      { "no": 76, "itemName": "在庫日報Excel出力", "inputType": "ボタン", "domain": "-", "required": "-", "initialValue": "-", "remarks": "" }
+    ]
+  },
+  "screenStates": {
+    "states": ["初期表示", "検索（通常モード）", "検索（内訳モード）"],
+    "items": [
+      { "no": 1, "group": "ヘッダ", "itemName": "検索モード", "initialDisplay": "入力可能", "searchNormal": "入力可能", "searchBreakdown": "入力可能" },
+      { "no": 2, "group": "ヘッダ", "itemName": "組織コード", "initialDisplay": "入力可能", "searchNormal": "入力可能", "searchBreakdown": "入力可能" },
+      { "no": 8, "group": "ヘッダ", "itemName": "取引先種別", "initialDisplay": "入力可能", "searchNormal": "入力可能", "searchBreakdown": "入力可能" },
+      { "no": 9, "group": "ヘッダ", "itemName": "検索範囲", "initialDisplay": "入力可能", "searchNormal": "入力可能", "searchBreakdown": "非表示" },
+      { "no": 19, "group": "ヘッダ", "itemName": "未承認の実績を含む", "initialDisplay": "入力可能", "searchNormal": "入力不可（チェックなし固定）", "searchBreakdown": "入力可能" },
+      { "no": 34, "group": "ヘッダ", "itemName": "選別数集計基準日", "initialDisplay": "入力可能", "searchNormal": "非表示", "searchBreakdown": "入力可能" },
+      { "no": 35, "group": "ヘッダ", "itemName": "指定年月日", "initialDisplay": "入力可能", "searchNormal": "非表示", "searchBreakdown": "入力可能" },
+      { "no": "43-55", "group": "明細（通常）", "itemName": "通常明細全項目", "initialDisplay": "非表示", "searchNormal": "表示", "searchBreakdown": "非表示" },
+      { "no": "56-75", "group": "明細（内訳）", "itemName": "内訳明細全項目", "initialDisplay": "非表示", "searchNormal": "非表示", "searchBreakdown": "表示" },
+      { "no": 76, "group": "フッタ", "itemName": "在庫日報Excel出力", "initialDisplay": "非表示", "searchNormal": "非表示", "searchBreakdown": "表示" }
+    ]
+  },
+  "validationRules": [
+    {
+      "event": "検索",
+      "targetItem": "実績済在庫基準日",
+      "errorTitle": "検索条件チェック",
+      "constraint": "実績済在庫基準日 > 業務日付の場合、エラー",
+      "messageId": "E.P20REN.CR.00989",
+      "messageParams": "{0}：実績済在庫基準日、{1}：本日",
+      "messageText": "実績済在庫基準日は過去日ではありません。{0}は{1}以前の日付を入力してください。"
+    },
+    {
+      "event": "検索",
+      "targetItem": "予定在庫基準日",
+      "errorTitle": "検索条件チェック",
+      "constraint": "予定在庫基準日 < 業務日付の場合、エラー",
+      "messageId": "E.P20REN.CR.00987",
+      "messageParams": "{0}：予定在庫基準日、{1}：本日",
+      "messageText": "予定在庫基準日は未来日ではありません。{0}は{1}以降の日付を入力してください。"
+    },
+    {
+      "event": "検索",
+      "targetItem": "－",
+      "errorTitle": "検索結果チェック",
+      "constraint": "取得結果が0件の場合",
+      "messageId": "E.P20REN.CR.00034",
+      "messageParams": "",
+      "messageText": "該当データが存在しません。該当するデータが見つかりません。条件を見直して再検索して下さい。"
+    },
+    {
+      "event": "在庫日報Excel出力",
+      "targetItem": "－",
+      "errorTitle": "完了メッセージ",
+      "constraint": "在庫日報発行後に完了メッセージ",
+      "messageId": "（新規）",
+      "messageParams": "",
+      "messageText": "在庫日報の発行が完了しました。"
+    }
+  ],
+  "tableMapping": {
+    "dataRetrieval": {
+      "summary": [
+        { "screenItem": "実績済在庫数", "source": "全てランクの基準日在庫（注1）＋未承認入庫実績－未承認出庫実績", "remarks": "注1：検索基準日時点の在庫。[現在在庫 - （在庫計上日が検索基準日翌日～業務日付である入出庫実績）]で計算" },
+        { "screenItem": "出庫可能数", "source": "実績済在庫数のうち、ランク区分「一般品」「限定品」の数量の和", "remarks": "" },
+        { "screenItem": "予定在庫数", "source": "実績済在庫数 + 未実績オーダー入庫数 - 未実績オーダー出庫数 + 承認済在庫未反映実績数（入庫は加算, 出庫は減算） + 仮オーダー入庫数 － 仮オーダー出庫数", "remarks": "" }
+      ],
+      "detailNormal": [
+        { "screenItem": "組織コード", "table": "取引先基本マスタ", "column": "主管組織コード", "remarks": "" },
+        { "screenItem": "組織名", "table": "取引先_共通(営業所名用)", "column": "取引先名", "remarks": "" },
+        { "screenItem": "取引先コード", "table": "現在在庫", "column": "取引先コード", "remarks": "" },
+        { "screenItem": "取引先名", "table": "取引先会計", "column": "予備項目08", "remarks": "" },
+        { "screenItem": "品目コード", "table": "現在在庫", "column": "品目コード", "remarks": "" },
+        { "screenItem": "品目名", "table": "品目マスタ", "column": "品目名", "remarks": "" },
+        { "screenItem": "区分（木・プラ・鉄）品目種別", "table": "品目マスタ", "column": "区分（木・プラ・鉄）", "remarks": "" },
+        { "screenItem": "実績済在庫数", "source": "全てランクの基準日在庫（注1）＋未承認入庫実績－未承認出庫実績（当該行品目）", "remarks": "" },
+        { "screenItem": "出庫可能数", "source": "実績済在庫数のうち、ランク区分「一般品」「限定品」の数量の和（当該行品目）", "remarks": "" },
+        { "screenItem": "予定在庫数", "source": "実績済在庫数 + 未実績オーダー入庫数 - 未実績オーダー出庫数 + 承認済在庫未反映実績数 + 仮オーダー入庫数 － 仮オーダー出庫数（当該行品目）", "remarks": "" }
+      ],
+      "detailBreakdown": [
+        { "screenItem": "組織コード", "table": "取引先基本マスタ", "column": "主管組織コード", "remarks": "" },
+        { "screenItem": "組織名", "table": "取引先_共通(営業所名用)", "column": "取引先名", "remarks": "" },
+        { "screenItem": "取引先コード", "table": "現在在庫", "column": "取引先コード", "remarks": "" },
+        { "screenItem": "取引先名", "table": "取引先会計", "column": "予備項目08", "remarks": "" },
+        { "screenItem": "品目コード", "table": "現在在庫", "column": "品目コード", "remarks": "" },
+        { "screenItem": "品目名", "table": "品目マスタ", "column": "品目名", "remarks": "" },
+        { "screenItem": "区分（木・プラ・鉄）品目種別", "table": "品目マスタ", "column": "区分（木・プラ・鉄）", "remarks": "" },
+        { "screenItem": "実績済在庫数", "source": "全てランクの基準日在庫（注1）＋未承認入庫実績－未承認出庫実績（当該行品目）", "remarks": "" },
+        { "screenItem": "出庫可能数", "source": "実績済在庫数のうち、ランク区分「一般品」「限定品」の数量の和（当該行品目）", "remarks": "" },
+        { "screenItem": "予定在庫数", "source": "実績済在庫数 + 未実績オーダー入庫数 - 未実績オーダー出庫数 + 承認済在庫未反映実績数 + 仮オーダー入庫数 － 仮オーダー出庫数（当該行品目）", "remarks": "" },
+        { "screenItem": "未選別", "source": "ランクが「未選別」の基準日在庫（注1）＋未承認入庫実績－未承認出庫実績（当該行品目）", "remarks": "" },
+        { "screenItem": "一般品", "source": "ランクが「一般品」の基準日在庫（注1）＋未承認入庫実績－未承認出庫実績（当該行品目）", "remarks": "" },
+        { "screenItem": "限定品", "source": "ランクが「限定品」の基準日在庫（注1）＋未承認入庫実績－未承認出庫実績（当該行品目）", "remarks": "" },
+        { "screenItem": "メンテ待ち", "source": "ランクが「メンテ待ち」の基準日在庫（注1）＋未承認入庫実績－未承認出庫実績（当該行品目）", "remarks": "" },
+        { "screenItem": "乾燥待ち", "source": "ランクが「乾燥待ち」の基準日在庫（注1）＋未承認入庫実績－未承認出庫実績（当該行品目）", "remarks": "" },
+        { "screenItem": "その他", "source": "ランクが「その他」の基準日在庫（注1）＋未承認入庫実績－未承認出庫実績（当該行品目）", "remarks": "" },
+        { "screenItem": "保留", "source": "ランクが「保留」の基準日在庫（注1）＋未承認入庫実績－未承認出庫実績（当該行品目）", "remarks": "" },
+        { "screenItem": "基準外", "source": "ランクが「基準外」の基準日在庫（注1）＋未承認入庫実績－未承認出庫実績（当該行品目）", "remarks": "" }
+      ],
+      "initialValues": {
+        "fromRentalOrder": {
+          "組織コード": "遷移元画面の計上組織コード（注2：出庫元コードが入力されている場合は組織コードは引き継がず、出庫元コードを取引先コードに設定）",
+          "取引先コード": "遷移元画面のデポコード",
+          "品目コード": "遷移元画面の品目コード",
+          "在庫状況": "在庫あり"
+        },
+        "fromMoveOrder": {
+          "組織コード": "遷移元画面の計上組織コード",
+          "取引先コード": "遷移元画面の出庫デポコード",
+          "品目コード": "遷移元画面の品目コード",
+          "在庫状況": "（ブランク）"
+        },
+        "fromLossOrder": {
+          "組織コード": "遷移元画面の計上組織コード",
+          "取引先コード": "遷移元画面の取引先コード",
+          "品目コード": "遷移元画面の品目コード",
+          "在庫状況": "（ブランク）"
+        },
+        "fromStockList": {
+          "取引先コード": "遷移元画面の選択した取引先コード（品目コード押下による遷移した場合はブランク）",
+          "品目コード": "遷移元画面の品目コード",
+          "在庫状況": "（ブランク）"
+        },
+        "lostFocus": {
+          "組織コード": "ロストフォーカスで組織名を自動表示",
+          "在庫グループコード": "ロストフォーカスで在庫グループ名を自動表示",
+          "取引先コード": "ロストフォーカスで取引先名を自動表示",
+          "品目コード": "ロストフォーカスで品目名を自動表示",
+          "品目コード（複数）1-4": "ロストフォーカスで品目名を自動表示"
+        }
+      }
+    }
+  },
+  "screenTransition": {
+    "callers": [
+      { "source": "レンタルオーダー", "targetScreen": "在庫一覧", "params": ["計上組織コード", "デポコード", "品目コード"] },
+      { "source": "移動オーダー", "targetScreen": "在庫一覧", "params": ["計上組織コード", "出庫デポコード", "品目コード"] },
+      { "source": "紛失オーダー", "targetScreen": "在庫一覧", "params": ["計上組織コード", "取引先コード", "品目コード"] },
+      { "source": "在庫一覧（リンク）", "targetScreen": "在庫一覧", "params": ["取引先コード", "品目コード"], "mode": "内訳" }
+    ],
+    "destinations": [
+      { "trigger": "「選択」ボタン", "targetScreen": "在庫詳細画面", "mode": "参照" },
+      { "trigger": "「振替」ボタン", "targetScreen": "在庫振替入力画面", "mode": "新規登録" },
+      { "trigger": "「取引先コード」リンク", "targetScreen": "在庫一覧画面", "mode": "内訳（新規Window）" },
+      { "trigger": "「品目コード」リンク", "targetScreen": "在庫一覧画面", "mode": "内訳（新規Window）" }
+    ]
+  },
+  "businessRules": {
+    "searchLogic": {
+      "description": "各検索条件はANDで検索処理を行うが、品目コード（複数）1～品目コード（複数）4間だけはORで検索する",
+      "rules": [
+        "品目コードが入力されている場合、品目コード（複数）は検索条件に含まず、品目コードで検索する",
+        "単一品目検索：品目コードを入力、もしくは品目コード（複数）1～4のいずれかを入力",
+        "複数品目検索：品目コード（複数）1～4を入力（最大4品目同時検索）"
+      ]
+    },
+    "priorityDisplay": {
+      "description": "優先表示の組織がある場合、一覧の先頭に表示し「在庫優先表示」に\"○\"を付与する",
+      "priorityOrgs": ["1300", "1303"],
+      "source": "コードマスタで管理"
+    },
+    "stockCalculation": {
+      "actualStock": "検索基準日時点の在庫。[現在在庫 - （在庫計上日が検索基準日翌日～業務日付である入出庫実績）]で計算",
+      "availableStock": "実績済在庫数のうち、ランク区分「一般品」「限定品」の数量の和",
+      "plannedStock": "実績済在庫数 + 未実績オーダー入庫数 - 未実績オーダー出庫数 + 承認済在庫未反映実績数（入庫は加算, 出庫は減算） + 仮オーダー入庫数 － 仮オーダー出庫数"
+    },
+    "dailyReport": {
+      "companyCode": "100",
+      "locale": "ja",
+      "note": "ログインユーザの所属会社・ロケールにかかわらず、Webデポ同様の設定で各種名称を取得する"
+    }
+  },
+  "users": [
+    "オーダー業務管理者",
+    "オーダー業務作業者",
+    "調達管理部門管理者",
+    "調達管理部門作業者"
+  ]
+}
