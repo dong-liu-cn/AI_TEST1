@@ -1,0 +1,1004 @@
+{
+  "file": "skill/U-IM-020-P_業務機能設計書_在庫一覧_Ver0.1.xlsx",
+  "sheets": [
+    "変更履歴",
+    "仕様概要",
+    "画面項目定義",
+    "画面状態定義",
+    "画面項目チェック定義",
+    "チェックマトリックス",
+    "画面取得元定義",
+    "画面遷移図",
+    "機能遷移図 (2)"
+  ],
+  "sheet_drawing_mapping": {
+    "画面遷移図": "xl/drawings/drawing7.xml",
+    "画面項目定義": "xl/drawings/drawing2.xml",
+    "画面取得元定義": "xl/drawings/drawing6.xml",
+    "仕様概要": "xl/drawings/drawing1.xml",
+    "チェックマトリックス": "xl/drawings/drawing5.xml",
+    "画面項目チェック定義": "xl/drawings/drawing4.xml",
+    "画面状態定義": "xl/drawings/drawing3.xml",
+    "機能遷移図 (2)": "xl/drawings/drawing8.xml"
+  },
+  "drawings": {
+    "画面遷移図": {
+      "shapes": [
+        {
+          "id": "101",
+          "name": "正方形/長方形 100",
+          "text": "「取引先コード」、もしくは 「品目コード」リンク押下",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 35,
+            "from_row": 5,
+            "to_col": 47,
+            "to_row": 9
+          },
+          "connections": []
+        },
+        {
+          "id": "138",
+          "name": "正方形/長方形 137",
+          "text": "「在庫日報 Excel 出力」ボタン押下",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 24,
+            "from_row": 27,
+            "to_col": 36,
+            "to_row": 29
+          },
+          "connections": []
+        },
+        {
+          "id": "81",
+          "name": "二等辺三角形 80",
+          "text": "",
+          "type": "shape",
+          "preset": "triangle",
+          "position": {
+            "from_col": 38,
+            "from_row": 12,
+            "to_col": 44,
+            "to_row": 18
+          },
+          "connections": []
+        },
+        {
+          "id": "82",
+          "name": "正方形/長方形 81",
+          "text": "在庫一覧",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 38,
+            "from_row": 12,
+            "to_col": 44,
+            "to_row": 18
+          },
+          "connections": []
+        },
+        {
+          "id": "83",
+          "name": "正方形/長方形 82",
+          "text": "パレット メニュー",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 2,
+            "from_row": 13,
+            "to_col": 8,
+            "to_row": 16
+          },
+          "connections": []
+        },
+        {
+          "id": "84",
+          "name": "直線矢印コネクタ 83",
+          "text": "",
+          "type": "connector",
+          "preset": "",
+          "position": {
+            "from_col": 8,
+            "from_row": 14,
+            "to_col": 38,
+            "to_row": 14
+          },
+          "connections": [
+            {
+              "type": "start",
+              "target_id": "83",
+              "idx": "3"
+            },
+            {
+              "type": "end",
+              "target_id": "82",
+              "idx": "1"
+            }
+          ]
+        },
+        {
+          "id": "85",
+          "name": "正方形/長方形 84",
+          "text": "在庫振替入力",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 53,
+            "from_row": 15,
+            "to_col": 60,
+            "to_row": 17
+          },
+          "connections": []
+        },
+        {
+          "id": "86",
+          "name": "正方形/長方形 85",
+          "text": "在庫詳細",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 53,
+            "from_row": 12,
+            "to_col": 60,
+            "to_row": 14
+          },
+          "connections": []
+        },
+        {
+          "id": "87",
+          "name": "直線矢印コネクタ 86",
+          "text": "",
+          "type": "connector",
+          "preset": "",
+          "position": {
+            "from_col": 44,
+            "from_row": 13,
+            "to_col": 53,
+            "to_row": 13
+          },
+          "connections": [
+            {
+              "type": "end",
+              "target_id": "86",
+              "idx": "1"
+            }
+          ]
+        },
+        {
+          "id": "88",
+          "name": "直線矢印コネクタ 87",
+          "text": "",
+          "type": "connector",
+          "preset": "",
+          "position": {
+            "from_col": 44,
+            "from_row": 16,
+            "to_col": 53,
+            "to_row": 16
+          },
+          "connections": [
+            {
+              "type": "end",
+              "target_id": "85",
+              "idx": "1"
+            }
+          ]
+        },
+        {
+          "id": "89",
+          "name": "フローチャート : 書類 17",
+          "text": "在庫日報",
+          "type": "shape",
+          "preset": "flowChartDocument",
+          "position": {
+            "from_col": 33,
+            "from_row": 30,
+            "to_col": 38,
+            "to_row": 34
+          },
+          "connections": []
+        },
+        {
+          "id": "91",
+          "name": "正方形/長方形 90",
+          "text": "レンタルオーダー",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 11,
+            "from_row": 15,
+            "to_col": 20,
+            "to_row": 17
+          },
+          "connections": []
+        },
+        {
+          "id": "92",
+          "name": "直線矢印コネクタ 10",
+          "text": "",
+          "type": "connector",
+          "preset": "",
+          "position": {
+            "from_col": 20,
+            "from_row": 14,
+            "to_col": 38,
+            "to_row": 16
+          },
+          "connections": [
+            {
+              "type": "start",
+              "target_id": "91",
+              "idx": "3"
+            },
+            {
+              "type": "end",
+              "target_id": "82",
+              "idx": "1"
+            }
+          ]
+        },
+        {
+          "id": "93",
+          "name": "正方形/長方形 92",
+          "text": "移動オーダー",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 11,
+            "from_row": 18,
+            "to_col": 20,
+            "to_row": 20
+          },
+          "connections": []
+        },
+        {
+          "id": "94",
+          "name": "直線矢印コネクタ 13",
+          "text": "",
+          "type": "connector",
+          "preset": "",
+          "position": {
+            "from_col": 8,
+            "from_row": 14,
+            "to_col": 11,
+            "to_row": 19
+          },
+          "connections": [
+            {
+              "type": "start",
+              "target_id": "83",
+              "idx": "3"
+            },
+            {
+              "type": "end",
+              "target_id": "93",
+              "idx": "1"
+            }
+          ]
+        },
+        {
+          "id": "95",
+          "name": "直線矢印コネクタ 10",
+          "text": "",
+          "type": "connector",
+          "preset": "",
+          "position": {
+            "from_col": 20,
+            "from_row": 14,
+            "to_col": 38,
+            "to_row": 19
+          },
+          "connections": [
+            {
+              "type": "start",
+              "target_id": "93",
+              "idx": "3"
+            },
+            {
+              "type": "end",
+              "target_id": "82",
+              "idx": "1"
+            }
+          ]
+        },
+        {
+          "id": "96",
+          "name": "正方形/長方形 95",
+          "text": "紛失オーダー",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 11,
+            "from_row": 20,
+            "to_col": 20,
+            "to_row": 22
+          },
+          "connections": []
+        },
+        {
+          "id": "97",
+          "name": "直線矢印コネクタ 13",
+          "text": "",
+          "type": "connector",
+          "preset": "",
+          "position": {
+            "from_col": 8,
+            "from_row": 14,
+            "to_col": 11,
+            "to_row": 21
+          },
+          "connections": [
+            {
+              "type": "start",
+              "target_id": "83",
+              "idx": "3"
+            },
+            {
+              "type": "end",
+              "target_id": "96",
+              "idx": "1"
+            }
+          ]
+        },
+        {
+          "id": "98",
+          "name": "直線矢印コネクタ 10",
+          "text": "",
+          "type": "connector",
+          "preset": "",
+          "position": {
+            "from_col": 20,
+            "from_row": 14,
+            "to_col": 38,
+            "to_row": 21
+          },
+          "connections": [
+            {
+              "type": "start",
+              "target_id": "96",
+              "idx": "3"
+            },
+            {
+              "type": "end",
+              "target_id": "82",
+              "idx": "1"
+            }
+          ]
+        },
+        {
+          "id": "100",
+          "name": "円/楕円 4",
+          "text": "",
+          "type": "shape",
+          "preset": "",
+          "position": {
+            "from_col": 40,
+            "from_row": 9,
+            "to_col": 42,
+            "to_row": 12
+          },
+          "connections": []
+        },
+        {
+          "id": "107",
+          "name": "直線矢印コネクタ 13",
+          "text": "",
+          "type": "connector",
+          "preset": "",
+          "position": {
+            "from_col": 8,
+            "from_row": 14,
+            "to_col": 11,
+            "to_row": 16
+          },
+          "connections": [
+            {
+              "type": "end",
+              "target_id": "91",
+              "idx": "1"
+            }
+          ]
+        },
+        {
+          "id": "117",
+          "name": "正方形/長方形 116",
+          "text": "メニューボタン押下",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 22,
+            "from_row": 12,
+            "to_col": 30,
+            "to_row": 14
+          },
+          "connections": []
+        },
+        {
+          "id": "137",
+          "name": "正方形/長方形 136",
+          "text": "「在庫」ボタン押下",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 22,
+            "from_row": 19,
+            "to_col": 30,
+            "to_row": 21
+          },
+          "connections": []
+        },
+        {
+          "id": "140",
+          "name": "コネクタ: カギ線 139",
+          "text": "",
+          "type": "connector",
+          "preset": "",
+          "position": {
+            "from_col": 36,
+            "from_row": 18,
+            "to_col": 41,
+            "to_row": 30
+          },
+          "connections": [
+            {
+              "type": "start",
+              "target_id": "81",
+              "idx": "3"
+            },
+            {
+              "type": "end",
+              "target_id": "89",
+              "idx": "0"
+            }
+          ]
+        },
+        {
+          "id": "148",
+          "name": "正方形/長方形 147",
+          "text": "「選択」アイコン押下",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 43,
+            "from_row": 11,
+            "to_col": 53,
+            "to_row": 13
+          },
+          "connections": []
+        },
+        {
+          "id": "151",
+          "name": "正方形/長方形 150",
+          "text": "「振替」アイコン押下",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 43,
+            "from_row": 15,
+            "to_col": 53,
+            "to_row": 16
+          },
+          "connections": []
+        },
+        {
+          "id": "152",
+          "name": "正方形/長方形 151",
+          "text": "「在庫」ボタン押下",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 22,
+            "from_row": 17,
+            "to_col": 30,
+            "to_row": 18
+          },
+          "connections": []
+        },
+        {
+          "id": "153",
+          "name": "正方形/長方形 152",
+          "text": "「在庫」ボタン押下",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 22,
+            "from_row": 14,
+            "to_col": 30,
+            "to_row": 16
+          },
+          "connections": []
+        },
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 0,
+            "from_row": 0,
+            "to_col": 46,
+            "to_row": 2
+          },
+          "connections": []
+        },
+        {
+          "id": "3",
+          "name": "角丸四角形吹き出し 2",
+          "text": "No.16 LDS ビラム 紛失オーダーから在庫一覧への画面遷移は不要 ※ 在庫の確認をしないため",
+          "type": "shape",
+          "preset": "wedgeRoundRectCallout",
+          "position": {
+            "from_col": 6,
+            "from_row": 24,
+            "to_col": 22,
+            "to_row": 29
+          },
+          "connections": []
+        }
+      ],
+      "transitions": [
+        {
+          "source": "パレット メニュー",
+          "target": "在庫一覧",
+          "label": "",
+          "transition_type": "画面遷移"
+        },
+        {
+          "source": "レンタルオーダー",
+          "target": "在庫一覧",
+          "label": "",
+          "transition_type": "画面遷移"
+        },
+        {
+          "source": "パレット メニュー",
+          "target": "移動オーダー",
+          "label": "",
+          "transition_type": "画面遷移"
+        },
+        {
+          "source": "移動オーダー",
+          "target": "在庫一覧",
+          "label": "",
+          "transition_type": "画面遷移"
+        },
+        {
+          "source": "パレット メニュー",
+          "target": "紛失オーダー",
+          "label": "",
+          "transition_type": "画面遷移"
+        },
+        {
+          "source": "紛失オーダー",
+          "target": "在庫一覧",
+          "label": "",
+          "transition_type": "画面遷移"
+        },
+        {
+          "source": "",
+          "target": "在庫日報",
+          "label": "",
+          "transition_type": "帳票出力"
+        }
+      ],
+      "mermaid": "```mermaid\ngraph LR\n    A[パレット メニュー] --> B[在庫一覧]\n    C[レンタルオーダー] --> B[在庫一覧]\n    A[パレット メニュー] --> D[移動オーダー]\n    D[移動オーダー] --> B[在庫一覧]\n    A[パレット メニュー] --> E[紛失オーダー]\n    E[紛失オーダー] --> B[在庫一覧]\n    F[] --> G[在庫日報]\n```",
+      "transition_table": "| No | 遷移元画面 | トリガー | 遷移先画面 | 遷移タイプ |\n|----|-----------|---------|-----------|-----------|\n| 1 | パレット メニュー |  | 在庫一覧 | 画面遷移 |\n| 2 | レンタルオーダー |  | 在庫一覧 | 画面遷移 |\n| 3 | パレット メニュー |  | 移動オーダー | 画面遷移 |\n| 4 | 移動オーダー |  | 在庫一覧 | 画面遷移 |\n| 5 | パレット メニュー |  | 紛失オーダー | 画面遷移 |\n| 6 | 紛失オーダー |  | 在庫一覧 | 画面遷移 |\n| 7 |  |  | 在庫日報 | 帳票出力 |"
+    },
+    "画面項目定義": {
+      "shapes": [
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 0,
+            "from_row": 0,
+            "to_col": 7,
+            "to_row": 2
+          },
+          "connections": []
+        }
+      ],
+      "transitions": [],
+      "mermaid": "> ※ 図形データからテキストを抽出できませんでした。手動でMermaid記法を作成してください。",
+      "transition_table": "> ※ 遷移情報を自動抽出できませんでした。"
+    },
+    "画面取得元定義": {
+      "shapes": [
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 0,
+            "from_row": 0,
+            "to_col": 7,
+            "to_row": 2
+          },
+          "connections": []
+        }
+      ],
+      "transitions": [],
+      "mermaid": "> ※ 図形データからテキストを抽出できませんでした。手動でMermaid記法を作成してください。",
+      "transition_table": "> ※ 遷移情報を自動抽出できませんでした。"
+    },
+    "仕様概要": {
+      "shapes": [
+        {
+          "id": "2",
+          "name": "角丸四角形吹き出し 2",
+          "text": "質問事項",
+          "type": "shape",
+          "preset": "wedgeRoundRectCallout",
+          "position": {
+            "from_col": 12,
+            "from_row": 4,
+            "to_col": 16,
+            "to_row": 6
+          },
+          "connections": []
+        },
+        {
+          "id": "3",
+          "name": "角丸四角形吹き出し 2",
+          "text": "レビュー事項",
+          "type": "shape",
+          "preset": "wedgeRoundRectCallout",
+          "position": {
+            "from_col": 4,
+            "from_row": 4,
+            "to_col": 10,
+            "to_row": 6
+          },
+          "connections": []
+        },
+        {
+          "id": "4",
+          "name": "角丸四角形吹き出し 2",
+          "text": "レビュー結果反映",
+          "type": "shape",
+          "preset": "wedgeRoundRectCallout",
+          "position": {
+            "from_col": 19,
+            "from_row": 4,
+            "to_col": 25,
+            "to_row": 6
+          },
+          "connections": []
+        },
+        {
+          "id": "37",
+          "name": "正方形/長方形 36",
+          "text": "①",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 33,
+            "from_row": 41,
+            "to_col": 35,
+            "to_row": 43
+          },
+          "connections": []
+        },
+        {
+          "id": "44",
+          "name": "正方形/長方形 43",
+          "text": "④",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 2,
+            "from_row": 60,
+            "to_col": 4,
+            "to_row": 62
+          },
+          "connections": []
+        },
+        {
+          "id": "45",
+          "name": "正方形/長方形 44",
+          "text": "⑤",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 5,
+            "from_row": 60,
+            "to_col": 8,
+            "to_row": 62
+          },
+          "connections": []
+        },
+        {
+          "id": "49",
+          "name": "正方形/長方形 48",
+          "text": "⑥",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 19,
+            "from_row": 60,
+            "to_col": 22,
+            "to_row": 62
+          },
+          "connections": []
+        },
+        {
+          "id": "50",
+          "name": "正方形/長方形 49",
+          "text": "⑦",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 30,
+            "from_row": 60,
+            "to_col": 32,
+            "to_row": 62
+          },
+          "connections": []
+        },
+        {
+          "id": "54",
+          "name": "正方形/長方形 53",
+          "text": "②",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 37,
+            "from_row": 41,
+            "to_col": 39,
+            "to_row": 43
+          },
+          "connections": []
+        },
+        {
+          "id": "55",
+          "name": "正方形/長方形 54",
+          "text": "③",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 67,
+            "from_row": 83,
+            "to_col": 69,
+            "to_row": 85
+          },
+          "connections": []
+        },
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 87,
+            "from_row": 10,
+            "to_col": 136,
+            "to_row": 47
+          },
+          "connections": []
+        },
+        {
+          "id": "11",
+          "name": "正方形/長方形 10",
+          "text": "①",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 30,
+            "from_row": 134,
+            "to_col": 32,
+            "to_row": 136
+          },
+          "connections": []
+        },
+        {
+          "id": "12",
+          "name": "正方形/長方形 11",
+          "text": "②",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 35,
+            "from_row": 134,
+            "to_col": 37,
+            "to_row": 136
+          },
+          "connections": []
+        },
+        {
+          "id": "19",
+          "name": "正方形/長方形 18",
+          "text": "⑧",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 60,
+            "from_row": 196,
+            "to_col": 62,
+            "to_row": 198
+          },
+          "connections": []
+        },
+        {
+          "id": "20",
+          "name": "正方形/長方形 19",
+          "text": "④",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 2,
+            "from_row": 146,
+            "to_col": 4,
+            "to_row": 148
+          },
+          "connections": []
+        }
+      ],
+      "transitions": [],
+      "mermaid": "```mermaid\ngraph LR\n    A[レビュー事項]\n    B[質問事項]\n    C[レビュー結果反映]\n    D[①]\n    E[②]\n    F[④]\n    G[⑤]\n    H[⑥]\n    I[⑦]\n    J[③]\n    K[①]\n    L[②]\n    M[④]\n    N[⑧]\n    A --> B\n    B --> C\n    C --> D\n    D --> E\n    E --> F\n    F --> G\n    G --> H\n    H --> I\n    I --> J\n    J --> K\n    K --> L\n    L --> M\n    M --> N\n```",
+      "transition_table": "> ※ 遷移情報を自動抽出できませんでした。"
+    },
+    "チェックマトリックス": {
+      "shapes": [
+        {
+          "id": "3",
+          "name": "正方形/長方形 4",
+          "text": "基本設計２週目でメンテ （まずは「画面項目チェック定義」を１週目で完成させる）",
+          "type": "shape",
+          "preset": "rect",
+          "position": {
+            "from_col": 0,
+            "from_row": 6,
+            "to_col": 14,
+            "to_row": 15
+          },
+          "connections": []
+        },
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 0,
+            "from_row": 0,
+            "to_col": 12,
+            "to_row": 1
+          },
+          "connections": []
+        }
+      ],
+      "transitions": [],
+      "mermaid": "```mermaid\ngraph LR\n    A[基本設計２週目でメンテ （まずは「画面項目チェック定義」を１週目で完成させる）]\n```",
+      "transition_table": "> ※ 遷移情報を自動抽出できませんでした。"
+    },
+    "画面項目チェック定義": {
+      "shapes": [
+        {
+          "id": "2",
+          "name": "角丸四角形吹き出し 2",
+          "text": "以下、現行から追加",
+          "type": "shape",
+          "preset": "flowChartAlternateProcess",
+          "position": {
+            "from_col": 20,
+            "from_row": 3,
+            "to_col": 28,
+            "to_row": 5
+          },
+          "connections": []
+        },
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 0,
+            "from_row": 0,
+            "to_col": 46,
+            "to_row": 2
+          },
+          "connections": []
+        }
+      ],
+      "transitions": [],
+      "mermaid": "```mermaid\ngraph LR\n    A[以下、現行から追加]\n```",
+      "transition_table": "> ※ 遷移情報を自動抽出できませんでした。"
+    },
+    "画面状態定義": {
+      "shapes": [
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 0,
+            "from_row": 0,
+            "to_col": 10,
+            "to_row": 2
+          },
+          "connections": []
+        }
+      ],
+      "transitions": [],
+      "mermaid": "> ※ 図形データからテキストを抽出できませんでした。手動でMermaid記法を作成してください。",
+      "transition_table": "> ※ 遷移情報を自動抽出できませんでした。"
+    },
+    "機能遷移図 (2)": {
+      "shapes": [
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 4,
+            "from_row": 36,
+            "to_col": 51,
+            "to_row": 42
+          },
+          "connections": []
+        },
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 1,
+            "from_row": 6,
+            "to_col": 49,
+            "to_row": 32
+          },
+          "connections": []
+        },
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 1,
+            "from_row": 51,
+            "to_col": 49,
+            "to_row": 79
+          },
+          "connections": []
+        },
+        {
+          "id": "pic",
+          "name": "Picture",
+          "text": "",
+          "type": "picture",
+          "preset": "",
+          "position": {
+            "from_col": 1,
+            "from_row": 79,
+            "to_col": 50,
+            "to_row": 87
+          },
+          "connections": []
+        }
+      ],
+      "transitions": [],
+      "mermaid": "> ※ 図形データからテキストを抽出できませんでした。手動でMermaid記法を作成してください。",
+      "transition_table": "> ※ 遷移情報を自動抽出できませんでした。"
+    }
+  }
+}
