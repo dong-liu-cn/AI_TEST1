@@ -2,7 +2,7 @@
 
 > 参照元: https://docs.cline.bot/customization/skills  
 > 作成日: 2026/4/10  
-> 更新日: 2026/4/15（使用シーン・メリット・注意点・公式ドキュメント最新情報を追加）
+> 更新日: 2026/4/15（使用シーン・メリット・注意点・公式ドキュメント最新情報を追加、v3.x対応レビュー実施）
 
 ---
 
@@ -18,7 +18,8 @@
 | コンテキスト消費 | 常に消費 | 必要時のみ消費 |
 | 用途 | コーディング規約、一般方針 | 特定タスクの専門知識 |
 
-> ⚠️ Skills は**実験的機能**です。`Settings → Features → Enable Skills` で有効化が必要。
+> ~~⚠️ Skills は**実験的機能**です。`Settings → Features → Enable Skills` で有効化が必要。~~  
+> ✅ **Cline v3.x 以降、Skills は標準機能として組み込まれており、特別な設定トグルは不要です**（2026-04 確認）。
 
 ---
 
@@ -52,7 +53,7 @@ my-skill/
 ```markdown
 ---
 name: my-skill
-description: スキルの説明（最大1024文字）。いつ使うかを明記する。
+description: スキルの説明。いつ使うかを明記する。具体的・アクション指向で。
 ---
 
 # スキル名
@@ -67,7 +68,7 @@ Clineが従うべき詳細な指示。
 
 **必須フィールド:**
 - `name`: ディレクトリ名と**完全一致**する必要あり
-- `description`: Clineがいつこのスキルを使うか判断するための説明（最大1024文字）
+- `description`: Clineがいつこのスキルを使うか判断するための説明
 
 ### 効果的な description の書き方
 
@@ -96,6 +97,7 @@ description: Data analysis helper.
 - `.cline/skills/`（**公式推奨**）
 - `.clinerules/skills/`
 - `.claude/skills/`
+- `.agents/skills/`（非公式だがClineが検出。実機確認済み）
 
 ### グローバルスキル
 - `~/.cline/skills/`（macOS/Linux）
@@ -235,15 +237,18 @@ Skillsの場合:
 
 ## 8. 注意点・ベストプラクティス
 
-### 8.1 有効化が必要（実験的機能）
+### 8.1 ~~有効化が必要（実験的機能）~~ → 標準機能に昇格済み
 
-Skills はデフォルトで無効です。使用前に以下の設定を行う必要があります：
+~~Skills はデフォルトで無効です。使用前に以下の設定を行う必要があります：~~
 
 ```
-Settings → Features → Enable Skills ☑
+~~Settings → Features → Enable Skills ☑~~
 ```
 
-> ⚠️ 実験的機能のため、将来のバージョンで仕様が変更される可能性があります。
+> ✅ **Cline v3.x（3.0以降）では、Skills は標準機能として組み込まれています。**  
+> `use_skill` ツールがシステムに標準搭載されており、`Settings → Features → Enable Skills` のトグルは**廃止（UIから削除）**されました。  
+> したがって、**現在は特別な有効化設定は不要**で、`.cline/skills/` 等にスキルを配置すれば自動的に検出・利用可能です。  
+> （2026-04 実機確認済み）
 
 ### 8.2 スキルのトグル（有効/無効の切り替え）
 
@@ -304,7 +309,7 @@ Clineはユーザーのリクエストとスキルの `description` を比較し
    - ユーザーが言いそうなフレーズを想定して記載する
    - 異なる表現でリクエストしてスキルが発動するかテストする
 
-### 8.5 SKILL.md のサイズ制限
+### 8.5 SKILL.md のサイズに関する推奨
 
 - SKILL.md 本文は **5,000トークン以下** を推奨
 - 長い指示は **docs/ フォルダ** に分割する
@@ -357,13 +362,13 @@ C:\Users\USERNAME\.cline\skills\my-skill\    ← グローバル（優先）
 
 ---
 
-## 10. 他のLLMツールとのSkills構造互換性に関する課題
+## 9. 他のLLMツールとのSkills構造互換性に関する課題
 
 ### 他のLLMコーディングツールとの比較
 
 | ツール | スキル相当の仕組み | 配置場所 | フォーマット |
 |--------|----------------|---------|------------|
-| **Cline** | Skills (`SKILL.md`) | `.cline/skills/`, `.claude/skills/`, `.clinerules/skills/` | YAML frontmatter + Markdown |
+| **Cline** | Skills (`SKILL.md`) | `.cline/skills/`, `.claude/skills/`, `.clinerules/skills/`, `.agents/skills/`（非公式） | YAML frontmatter + Markdown |
 | **Claude Code** | CLAUDE.md / Skills | `.claude/` | Markdown |
 | **Cursor** | Rules for AI | `.cursor/rules/` | Markdown |
 | **Windsurf** | Rules | `.windsurfrules` | Markdown |
